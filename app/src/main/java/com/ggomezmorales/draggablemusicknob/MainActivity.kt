@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -61,6 +62,7 @@ class MainActivity : ComponentActivity() {
                     horizontalArrangement = Arrangement.Center,
                     verticalAlignment = Alignment.CenterVertically,
                     modifier = Modifier
+                        .fillMaxHeight(0.2f)
                         .border(1.dp, Color.Green, RoundedCornerShape(10.dp))
                         .padding(30.dp)
                 ) {
@@ -69,7 +71,7 @@ class MainActivity : ComponentActivity() {
                     }
                     val barCount = 20
                     MusicKnob(
-                        modifier = Modifier.size(10.dp)
+                        modifier = Modifier.size(100.dp)
                     ) {
                         volume = it
                     }
@@ -152,7 +154,7 @@ fun MusicKnob(
             .pointerInteropFilter { event ->
                 touchX = event.x
                 touchY = event.y
-                val angle = -atan2(centerY - touchY, centerX - touchX) * (180f / Math.PI).toFloat()
+                val angle = -atan2(centerX - touchX, centerY - touchY) * (180f / Math.PI).toFloat()
 
                 when (event.action) {
                     MotionEvent.ACTION_DOWN, MotionEvent.ACTION_MOVE -> {
